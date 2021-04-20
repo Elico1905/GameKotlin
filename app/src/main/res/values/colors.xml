@@ -8,10 +8,10 @@
     <color name="color2">#78909c</color>
     <color name="color3">#90a4ae</color>
 
-    <color name="c1">#FF1744</color>
-    <color name="c2">#FF6E40</color>
-    <color name="c3">#00E676</color>
-    <color name="c4">#2e7d32</color>
+    <color name="c1">#FFFFFF</color>
+    <color name="c2">#FF9E80</color>
+    <color name="c3">#000000</color>
+    <color name="c4">#FFE57F</color>
     <color name="c5">#00b8d4</color>
     <color name="c6">#01579b</color>
     <color name="c7">#7b1fa2</color>
@@ -19,7 +19,7 @@
 
 
     <color name="verde">#69F0AE</color>
-    <color name="rojo">#FF5252</color>
+    <color name="rojo">#FF8A80</color>
 
     <color name="azul">#6E9EBE</color>
     <color name="black">#FF000000</color>
