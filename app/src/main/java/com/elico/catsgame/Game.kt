@@ -23,7 +23,7 @@ class Game : AppCompatActivity() {
     var errores: Int = 0
 
     private lateinit var t1: TextView
-    var p1: Int = 0
+    var p1: Int = 100
     var vistas: Int = 0
 
 
@@ -31,9 +31,12 @@ class Game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        /*error.setOnClickListener {
-            revolver()
-        }*/
+
+        viewAll.setOnClickListener {
+            if (estado == false && progressBar.progress == 100) {
+                showAll()
+            }
+        }
 
         game_comenzar.setOnClickListener {
             if (estado == false) {
@@ -47,6 +50,7 @@ class Game : AppCompatActivity() {
                         progressBar.progress = (progressBar.progress + 1)
                         i++
                         Thread.sleep(300)
+                        //Thread.sleep(10)
                     }
                     estado = false
                 })
@@ -85,21 +89,25 @@ class Game : AppCompatActivity() {
                     mostrar(caja, position)
                 } else {
                     if (vistas == 1) {
-                        mostrar(caja, position)
-                        if (listaData[p1] == listaData[position]) {
-                            creditos += 10
-                            puntos.text = "puntos: ${creditos}"
-                            listaDataBlack[position] = false
-                            listaDataBlack[p1] = false
-                        } else {
-                            ocultar(caja, position)
-                            ocultar(t1, p1)
-                            errores += 1
-                            error.text = "Errores: ${errores}"
+                        if (position != p1) {
+
+                            mostrar(caja, position)
+                            if (listaData[p1] == listaData[position]) {
+                                creditos += 10
+                                puntos.text = "puntos: ${creditos}"
+                                listaDataBlack[position] = false
+                                listaDataBlack[p1] = false
+                            } else {
+                                ocultar(caja, position)
+                                ocultar(t1, p1)
+                                errores += 1
+                                error.text = "Errores: ${errores}"
+                            }
+                            vistas = 0
+                            intentos += 1
+                            intento.text = "Intentos: ${intentos}"
+
                         }
-                        vistas = 0
-                        intentos += 1
-                        intento.text = "Intentos: ${intentos}"
                     } else {
                         Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
                     }
@@ -117,7 +125,7 @@ class Game : AppCompatActivity() {
                 val timer = object : CountDownTimer(180, 1000) {
                     override fun onTick(millisUntilFinished: Long) {}
                     override fun onFinish() {
-                        showColor(caja,listaData[position])
+                        showColor(caja, listaData[position])
                     }
                 }
                 timer.start()
@@ -125,30 +133,31 @@ class Game : AppCompatActivity() {
         }
 
     }
-    private fun showColor(caja: TextView?, position: Int){
-        when(position){
-            1 ->{
+
+    private fun showColor(caja: TextView?, position: Int) {
+        when (position) {
+            1 -> {
                 caja?.setBackgroundResource(R.drawable.carta01)
             }
-            2 ->{
+            2 -> {
                 caja?.setBackgroundResource(R.drawable.carta02)
             }
-            3 ->{
+            3 -> {
                 caja?.setBackgroundResource(R.drawable.carta03)
             }
-            4 ->{
+            4 -> {
                 caja?.setBackgroundResource(R.drawable.carta04)
             }
-            5 ->{
+            5 -> {
                 caja?.setBackgroundResource(R.drawable.carta05)
             }
-            6 ->{
+            6 -> {
                 caja?.setBackgroundResource(R.drawable.carta06)
             }
-            7 ->{
+            7 -> {
                 caja?.setBackgroundResource(R.drawable.carta07)
             }
-            8 ->{
+            8 -> {
                 caja?.setBackgroundResource(R.drawable.carta08)
             }
         }
@@ -161,14 +170,17 @@ class Game : AppCompatActivity() {
                 caja?.animate()?.apply {
                     duration = 250
                     rotationYBy(360f)
+
                     val timer3 = object : CountDownTimer(180, 1000) {
                         override fun onTick(millisUntilFinished: Long) {}
                         override fun onFinish() {
-                            caja?.setBackgroundResource(R.drawable.carta)
+                            //caja?.setBackgroundResource(R.drawable.carta)
                             lista[position] = true
+                            caja?.setBackgroundResource(R.drawable.carta)
                         }
                     }
                     timer3.start()
+
                 }?.start()
             }
         }
@@ -233,43 +245,43 @@ class Game : AppCompatActivity() {
                         listaTem.add(aux)
                     }
                 }
-                if (aux == 2){
+                if (aux == 2) {
                     if (m2 < 2) {
                         m2++
                         listaTem.add(aux)
                     }
                 }
-                if (aux == 3){
+                if (aux == 3) {
                     if (m3 < 2) {
                         m3++
                         listaTem.add(aux)
                     }
                 }
-                if (aux == 4){
+                if (aux == 4) {
                     if (m4 < 2) {
                         m4++
                         listaTem.add(aux)
                     }
                 }
-                if (aux == 5){
+                if (aux == 5) {
                     if (m5 < 2) {
                         m5++
                         listaTem.add(aux)
                     }
                 }
-                if (aux == 6){
+                if (aux == 6) {
                     if (m6 < 2) {
                         m6++
                         listaTem.add(aux)
                     }
                 }
-                if (aux == 7){
+                if (aux == 7) {
                     if (m7 < 2) {
                         m7++
                         listaTem.add(aux)
                     }
                 }
-                if (aux == 8){
+                if (aux == 8) {
                     if (m8 < 2) {
                         m8++
                         listaTem.add(aux)
@@ -286,7 +298,7 @@ class Game : AppCompatActivity() {
         print("[")
         var salto: Int = 1
         while (j < listaData.size) {
-            if (salto == 5){
+            if (salto == 5) {
                 salto = 1
                 println("")
             }
@@ -297,6 +309,25 @@ class Game : AppCompatActivity() {
         }
         println("]")
         println("-----")
+    }
+
+    private fun showAll(){
+        showColor(c1,listaData[0])
+        showColor(c2,listaData[1])
+        showColor(c3,listaData[2])
+        showColor(c4,listaData[3])
+        showColor(c5,listaData[4])
+        showColor(c6,listaData[5])
+        showColor(c7,listaData[6])
+        showColor(c8,listaData[7])
+        showColor(c9,listaData[8])
+        showColor(c10,listaData[9])
+        showColor(c11,listaData[10])
+        showColor(c12,listaData[11])
+        showColor(c13,listaData[12])
+        showColor(c14,listaData[13])
+        showColor(c15,listaData[14])
+        showColor(c16,listaData[15])
     }
 
     override fun onBackPressed() {
