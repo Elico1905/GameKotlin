@@ -7,6 +7,7 @@ import android.os.CountDownTimer
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_game.*
 
 class Game : AppCompatActivity() {
@@ -17,6 +18,7 @@ class Game : AppCompatActivity() {
     var listaDataBlack = arrayOf<Boolean>(true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true)
     var estado: Boolean = false
     var i: Int = 0
+    var mas: Boolean = false
 
     var creditos: Int = 0
     var intentos: Int = 0
@@ -31,10 +33,36 @@ class Game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        op_no_01.setOnClickListener {
+            mensaje01.visibility = View.GONE
+            despintar()
+        }
+        op_si_01.setOnClickListener {
+            mensaje01.visibility = View.GONE
+            showAll()
+            despintar()
+        }
 
         viewAll.setOnClickListener {
-            if (estado == false && progressBar.progress == 100) {
-                showAll()
+            if (estado == false) {
+                mensaje01.visibility = View.VISIBLE
+                pintar()
+            }
+        }
+
+        op_no_02.setOnClickListener {
+            mensaje02.visibility = View.GONE
+            despintar()
+        }
+        op_si_02.setOnClickListener {
+            mensaje02.visibility = View.GONE
+            ClearAll()
+            despintar()
+        }
+        clear.setOnClickListener {
+            if (estado == false) {
+                mensaje02.visibility = View.VISIBLE
+                pintar()
             }
         }
 
@@ -47,10 +75,14 @@ class Game : AppCompatActivity() {
                 val thread = Thread(Runnable {
                     i = 0
                     while (i < 100) {
+                        if (mas == true) {
+                            mas = false
+                            progressBar.progress = (progressBar.progress - 5)
+                            i -= 5
+                        }
                         progressBar.progress = (progressBar.progress + 1)
                         i++
                         Thread.sleep(300)
-                        //Thread.sleep(10)
                     }
                     estado = false
                 })
@@ -94,9 +126,14 @@ class Game : AppCompatActivity() {
                             mostrar(caja, position)
                             if (listaData[p1] == listaData[position]) {
                                 creditos += 10
+                                mas = true
                                 puntos.text = "puntos: ${creditos}"
                                 listaDataBlack[position] = false
                                 listaDataBlack[p1] = false
+                                if (creditos == 80) {
+                                    i = 100
+                                    estado = false
+                                }
                             } else {
                                 ocultar(caja, position)
                                 ocultar(t1, p1)
@@ -311,26 +348,46 @@ class Game : AppCompatActivity() {
         println("-----")
     }
 
-    private fun showAll(){
-        showColor(c1,listaData[0])
-        showColor(c2,listaData[1])
-        showColor(c3,listaData[2])
-        showColor(c4,listaData[3])
-        showColor(c5,listaData[4])
-        showColor(c6,listaData[5])
-        showColor(c7,listaData[6])
-        showColor(c8,listaData[7])
-        showColor(c9,listaData[8])
-        showColor(c10,listaData[9])
-        showColor(c11,listaData[10])
-        showColor(c12,listaData[11])
-        showColor(c13,listaData[12])
-        showColor(c14,listaData[13])
-        showColor(c15,listaData[14])
-        showColor(c16,listaData[15])
+    private fun showAll() {
+        showColor(c1, listaData[0])
+        showColor(c2, listaData[1])
+        showColor(c3, listaData[2])
+        showColor(c4, listaData[3])
+        showColor(c5, listaData[4])
+        showColor(c6, listaData[5])
+        showColor(c7, listaData[6])
+        showColor(c8, listaData[7])
+        showColor(c9, listaData[8])
+        showColor(c10, listaData[9])
+        showColor(c11, listaData[10])
+        showColor(c12, listaData[11])
+        showColor(c13, listaData[12])
+        showColor(c14, listaData[13])
+        showColor(c15, listaData[14])
+        showColor(c16, listaData[15])
+    }
+
+
+    private fun pintar() {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.oculto_barra)
+    }
+
+    private fun despintar() {
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        window.statusBarColor = ContextCompat.getColor(applicationContext, R.color.colorPrimaryVariant)
     }
 
     override fun onBackPressed() {
         //super.onBackPressed()
+        if (mensaje01.visibility == View.VISIBLE) {
+            despintar()
+            mensaje01.visibility = View.GONE
+        }
+        if (mensaje02.visibility == View.VISIBLE) {
+            despintar()
+            mensaje02.visibility = View.GONE
+        }
+
     }
 }

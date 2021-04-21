@@ -10,8 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/color2">
+        android:background="@color/color2"
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="match_parent"
@@ -28,8 +28,6 @@
             android:rotationY="180"
             android:scaleType="fitStart"
             android:src="@drawable/ic_superior_02" />
-
-
 
 
     </RelativeLayout>
@@ -49,8 +47,8 @@
                 android:id="@+id/puntos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginTop="5dp"
+                android:layout_weight="1"
                 android:text="Puntos: 0"
                 android:textAlignment="center"
                 android:textColor="@color/white"
@@ -80,58 +78,76 @@
         </LinearLayout>
 
         <ProgressBar
-            android:layout_marginTop="10dp"
-            android:visibility="visible"
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:progressDrawable="@drawable/custom_progressbar"
-            android:rotation="180"/>
+            android:rotation="180"
+            android:visibility="visible" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"/>
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/clear"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:foreground="@drawable/effect_ripple"
+                android:rotation="-29"
+                android:src="@drawable/ic_restar" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/game_comenzar"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/azul_button"
-                android:text="comenzar"
+                android:foreground="@drawable/effect_ripple"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:textSize="20dp"
+                android:text="comenzar"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:foreground="@drawable/effect_ripple"/>
+                android:textSize="20dp" />
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <ImageView
                 android:id="@+id/viewAll"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_eye"
                 android:layout_gravity="center"
                 android:clickable="true"
-                android:foreground="@drawable/effect_ripple"/>
+                android:foreground="@drawable/effect_ripple"
+                android:src="@drawable/ic_eye" />
+
             <Space
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
-
 
 
         <LinearLayout
@@ -151,7 +167,7 @@
                     android:layout_width="70dp"
                     android:layout_height="100dp"
                     android:background="@drawable/carta"
-                    android:clickable="true"/>
+                    android:clickable="true" />
 
                 <Space
                     android:layout_width="20dp"
@@ -260,7 +276,7 @@
                     android:layout_width="70dp"
                     android:layout_height="100dp"
                     android:background="@drawable/carta"
-                    android:clickable="true"/>
+                    android:clickable="true" />
 
                 <Space
                     android:layout_width="20dp"
@@ -338,6 +354,168 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/mensaje01"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/oculto"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="30dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="¿Mostrar Respuestas?"
+                    android:textAlignment="center"
+                    android:textSize="30dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/op_no_01"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/azul_button"
+                        android:foreground="@drawable/effect_ripple02"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="3dp"
+                        android:text="no"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/op_si_01"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/azul_button"
+                        android:foreground="@drawable/effect_ripple02"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="3dp"
+                        android:text="Mostrar"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mensaje02"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/oculto"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="30dp"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="¿limpiar todo?"
+                    android:textAlignment="center"
+                    android:textSize="30dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/op_no_02"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/azul_button"
+                        android:foreground="@drawable/effect_ripple02"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="3dp"
+                        android:text="no"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/op_si_02"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/azul_button"
+                        android:foreground="@drawable/effect_ripple02"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="3dp"
+                        android:text="limpiar"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="20dp" />
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

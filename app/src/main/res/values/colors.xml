@@ -21,6 +21,10 @@
     <color name="verde">#69F0AE</color>
     <color name="rojo">#FF8A80</color>
 
+
+
+    <color name="oculto_barra">#333B3E</color>
+    <color name="oculto">#BC232323</color>
     <color name="azul">#6E9EBE</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
